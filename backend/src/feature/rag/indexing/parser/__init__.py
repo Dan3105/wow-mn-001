@@ -1,4 +1,4 @@
-from backend.src.feature.rag.indexing.parser.pdf_parser import PDFParser
+from .pdf_parser import PDFParser
 from langchain_core.documents import Document
 
 class DocumentReader:
