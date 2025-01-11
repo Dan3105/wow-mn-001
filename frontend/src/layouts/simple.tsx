@@ -1,21 +1,30 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { cn } from "@/lib/utils";
 
 const SimpleLayout: React.FC = () => {
     return (
-        <div className="vh-100 vw-100 d-flex flex-column">
-            {/* <Navbar bg="dark" variant="dark">
-                <Nav>
-                    <Nav.Link as={Link} to="/chat">Chat</Nav.Link>
-                    <Nav.Link as={Link} to="/files">Files Management</Nav.Link>
-                </Nav>
-            </Navbar> */}
-            <div className="flex-grow-1">
+        <div className="min-h-screen">
+            <nav className="border-b bg-background">
+                <div className="flex h-14 items-center px-4">
+                    <Link 
+                        to="/" 
+                        className={cn(
+                            "text-sm font-medium transition-colors hover:text-primary",
+                        )}
+                    >
+                        Home
+                    </Link>
+                </div>
+            </nav>
+            <main className="flex-1 p-4">
                 <Outlet />
-            </div>
+            </main>
         </div>
     );
 };
+
+
 
 export default SimpleLayout;
