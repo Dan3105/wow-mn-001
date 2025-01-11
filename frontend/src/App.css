@@ -1,0 +1,36 @@
+/* App.css */
+/* Basic resets and global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Custom utility classes */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Add smooth scrolling to the page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Basic link style reset */
+a {
+  text-decoration: none;
+}
+
+/* Custom transitions for hover effects */
+.hover-fade {
+  transition: opacity 0.2s ease-in-out;
+}
+
+.hover-fade:hover {
+  opacity: 0.8;
+}
