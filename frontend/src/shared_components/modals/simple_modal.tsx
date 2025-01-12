@@ -8,7 +8,18 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 
-const SimpleModal = ({
+interface SimpleModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    onConfirm: () => void;
+    title: string;
+    description: string;
+    confirmButtonText?: string;
+    cancelButtonText?: string;
+    confirmButtonVariant?: "destructive" | "default" | "outline" | "secondary" | "ghost" | "link";
+}
+
+const SimpleModal: React.FC<SimpleModalProps> = ({
     isOpen,
     onClose,
     onConfirm,

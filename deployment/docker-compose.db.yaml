@@ -2,6 +2,7 @@ services:
   chroma_db:
     image: chromadb/chroma
     container_name: chromadb
+    restart: always
     volumes:
       # Be aware that indexed data are located in "/chroma/chroma/"
       # Default configuration for persist_directory in chromadb/config.py
@@ -11,8 +12,9 @@ services:
       - "8000:8000"
     
   postgres:
-    image: postgres
+    image: postgres:16
     container_name: postgres
+    restart: always
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password

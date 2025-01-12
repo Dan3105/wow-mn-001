@@ -1,7 +1,7 @@
-from src.dbcontext import Base
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from dbcontext.postgres import Base
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, UniqueConstraint
 from sqlalchemy.orm import relationship
-from datetime import datetime
+from datetime import datetime, timezone
 
 class File(Base):
     __tablename__ = 'files'
@@ -12,8 +12,10 @@ class File(Base):
     size = Column(Integer)
     directory_id = Column(Integer, ForeignKey('directories.id'), nullable=False)
     directory = relationship('Directory', back_populates='files')
-    created_at = Column(DateTime, default=datetime.now(datetime.timezone.utc))
-    updated_at = Column(DateTime, default=datetime.now(datetime.timezone.utc), onupdate=datetime.now(datetime.timezone.utc))
+    created_at = Column(DateTime, default=datetime.now(timezone.utc))
+    updated_at = Column(DateTime, default=datetime.now(timezone.utc), onupdate=datetime.now(timezone.utc))
+
+    __table_args__ = (UniqueConstraint('name', 'directory_id', name='_name_directory_uc'),)
 
     def __init__(self, name, path, size, directory_id):
         self.name = name
