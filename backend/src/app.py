@@ -1,10 +1,20 @@
 from fastapi import FastAPI
 from configuration import router_config
 import argparse
+from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
+
+load_dotenv()
 
 app = FastAPI()
 app.include_router(router=router_config.router)
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 def main():
     import uvicorn
 

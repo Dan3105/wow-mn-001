@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 from feature.rag.agents.generation_agent import GenerationAgent
-from feature.rag.indexing.dbcontext.chroma import ChromaDbContext
+from dbcontext.chroma import ChromaDbContext
 
 router = APIRouter()
 

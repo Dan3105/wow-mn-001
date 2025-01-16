@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from api.rag import indexing
 from api.rag.agents import generation_agent
+import api.rag.directories as directories
 
 router = APIRouter()
 
@@ -10,3 +11,4 @@ async def index():
 
 router.include_router(indexing.router, prefix='/rag/indexing')
 router.include_router(generation_agent.router, prefix='/rag/agents')
+router.include_router(directories.router, prefix='/rag/directories')

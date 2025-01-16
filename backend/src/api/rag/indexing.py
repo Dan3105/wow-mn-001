@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 from feature.rag.indexing.parser import DocumentReader
 from feature.rag.indexing.chunk import ChunkOptimization
-from feature.rag.indexing.dbcontext.chroma import ChromaDbContext
+from dbcontext.chroma import ChromaDbContext
 import os.path
 
 router = APIRouter()

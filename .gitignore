@@ -4,3 +4,5 @@ venv/
 .vscode/
 deployment/volumes/*
 secrete/
+/store/
+backend/store/
