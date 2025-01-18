@@ -3,7 +3,7 @@ import os
 import shutil
 from fastapi import APIRouter, UploadFile, File, Request, HTTPException
 from fastapi.responses import JSONResponse, FileResponse
-from backend.src.feature.directories.file_utils import folderCompare, get_size, diff
+from directories.file_utils import folderCompare, get_size, diff
 import tempfile
 from zipfile import ZipFile
 

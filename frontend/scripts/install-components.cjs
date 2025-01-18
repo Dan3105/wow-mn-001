@@ -9,6 +9,7 @@ const components = [
     'sidebar',
     'dropdown-menu',
     'table',
+    'label'
 ];
 
 console.log('Installing shadcn-ui components...');
