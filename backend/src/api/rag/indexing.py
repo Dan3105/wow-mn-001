@@ -51,36 +51,36 @@ class Query(BaseModel):
 #             ]
 #         }
 
-# @router.post("/upload-pdf/")
-# async def read_pdf(pdf_path: PDFPath) -> dict:
-#     reader = DocumentReader(file_path=pdf_path.formatted_path)
-#     documents = reader.read_pdf()
-#     optimizer = ChunkOptimization()
-#     chunk_documents = optimizer.simple_split(documents)
+@router.post("/upload-pdf/")
+async def read_pdf(pdf_path: PDFPath) -> dict:
+    reader = DocumentReader(file_path=pdf_path.formatted_path)
+    documents = reader.read_pdf()
+    optimizer = ChunkOptimization()
+    chunk_documents = optimizer.simple_split(documents)
 
-#     context = ChromaDbContext()
-#     response = context.insert_document(pdf_path.collection_name, chunk_documents)
+    context = ChromaDbContext()
+    response = context.insert_document(pdf_path.collection_name, chunk_documents)
 
-#     return {
-#         "response": response   
-#     }
+    return {
+        "response": response   
+    }
 
-# @router.post("/search")
-# async def search(query: Query) -> dict:
-#     context = ChromaDbContext()
-#     results = context.similarity_search(query.query, query.collection_name)
+@router.post("/search")
+async def search(query: Query) -> dict:
+    context = ChromaDbContext()
+    results = context.similarity_search(query.query, query.collection_name)
     
-#     # Extract only documents and metadata from QueryResult
-#     return {
-#         "results": [
-#             {
-#                 "document": doc,
-#                 "metadata": meta[0] if meta else None,
-#                 "distance": dist[0] if dist else None
-#             } for doc, meta, dist in zip(
-#                 results.get("documents", []), 
-#                 results.get("metadata", []), 
-#                 results.get("distances", [])
-#             )
-#         ] if results.get("documents") else []
-#     }
+    # Extract only documents and metadata from QueryResult
+    return {
+        "results": [
+            {
+                "document": doc,
+                "metadata": meta[0] if meta else None,
+                "distance": dist[0] if dist else None
+            } for doc, meta, dist in zip(
+                results.get("documents", []), 
+                results.get("metadata", []), 
+                results.get("distances", [])
+            )
+        ] if results.get("documents") else []
+    }

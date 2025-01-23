@@ -5,10 +5,11 @@ from typing import List
 class FileMeta(BaseModel):
     name: str
     path: str
-    hash: str
     size: int
     create_date: datetime
     modified_date: datetime
+    is_chunked: bool = False
+    collection_name: str
 
 class DirectoryMeta(BaseModel):
     name: str

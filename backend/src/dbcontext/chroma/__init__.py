@@ -12,11 +12,12 @@ class ChromaDbContext:
     def insert_document(self, 
                         collection_name: str, 
                         documents: list[Document]):
+        self.client.list_collections
         collection = self.client.get_collection(name=collection_name)
         if collection is not None:
             self.client.delete_collection(name=collection_name)
 
-        chroma = Chroma.from_documents(
+        Chroma.from_documents(
             client=self.client,
             documents=documents,
             collection_name=collection_name,

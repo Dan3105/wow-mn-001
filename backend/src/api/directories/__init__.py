@@ -107,3 +107,50 @@ def move(src: str = Form(...), dst: str = Form(...)):
         return JSONResponse(content={"message": "File or directory moved successfully"})
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+# @router.post("/rename")
+# async def rename(request: Request):
+#     data = await request.json()
+#     name = data['name']
+#     folder = data['folder']
+#     dst = data['dst']
+#     target = os.path.join(home_path, folder, name)
+#     fullDestination = os.path.join(home_path, folder, dst)
+#     try:
+#         os.rename(target, fullDestination)
+#         return "1"
+#     except IOError as e:
+#         raise HTTPException(status_code=500, detail=str(e))
+
+# @router.get("/download/{name:path}")
+# async def download(name: str):
+#     target = os.path.join(home_path, name)
+#     def get_all_dir(directory):
+#         file_paths = list()
+#         for root, directories, files in os.walk(directory):
+#             for filename in files:
+#                 filepath = os.path.join(root, filename)
+#                 file_paths.append(filepath)
+#         return file_paths
+
+#     if os.path.isdir(target):
+#         os.chdir(os.path.dirname(target))
+#         foldername = os.path.basename(target)
+#         file_paths = get_all_dir(foldername)
+#         temp_dir = tempfile.gettempdir()
+#         zipname = os.path.join(temp_dir, foldername)
+
+#         try:
+#             with ZipFile(f"{foldername}.zip", "w") as zip:
+#                 for file in file_paths:
+#                     zip.write(file)
+#             return FileResponse(path=f"{foldername}.zip", filename=f"{foldername}.zip", media_type='application/zip')
+
+#         finally:
+#             if os.path.exists(f"{foldername}.zip"):
+#                 os.remove(f"{foldername}.zip")
+#     else:
+#         try:
+#             return FileResponse(path=target, filename=os.path.basename(target), media_type='application/octet-stream')
+#         except IOError:
+#             raise HTTPException(status_code=500, detail="Can't download")

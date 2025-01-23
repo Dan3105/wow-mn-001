@@ -9,11 +9,8 @@ const AppRouter: React.FC = () => {
     <Router>
       <Routes>
         <Route path='' element={<MainPage />}>
-            <Route path='' element={<SimplePage />} />
             <Route path='my-docs' element={<FilesManagementPage />} />
-        </Route>
-
-        <Route path='*' element={<SimplePage />}>
+            <Route path='*' element={<SimplePage />} />
         </Route>
       </Routes>
     </Router>

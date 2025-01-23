@@ -3,6 +3,7 @@ from typing import Dict, Any
 import os
 from ..file_utils import get_file_metadata, get_directory_metadata
 from ..dto import DirectoryMeta, FileMeta, ResourceMeta
+from dbcontext.chroma import ChromaDbContext
 
 class DirectoryOperations:
     def __init__(self, path: str):
@@ -20,13 +21,15 @@ class DirectoryOperations:
 
         folders_data: list[DirectoryMeta] = []
         files_data: list[FileMeta] = []
+        chromadb = ChromaDbContext()
 
         for item in os.listdir(self.dir_path):
             full_path = os.path.join(self.dir_path, item)
             if os.path.isdir(full_path):
                 folders_data.append(get_directory_metadata(full_path))
             else:
-                files_data.append(get_file_metadata(full_path))
+                file_meta = get_file_metadata(full_path)
+                file_meta.is_chunked = chromadb.client.get_collection(file_meta.path) is not None
 
         parent_path = os.path.dirname(self.dir_path)
         prev_path = self._get_previous_path(parent_path)

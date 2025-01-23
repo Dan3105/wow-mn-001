@@ -31,6 +31,7 @@ export function NavMain({
       url: string
     }[]
   }[]
+  onClick?: (e: React.MouseEvent, path: string) => void
 }) {
   return (
     <SidebarGroup>
