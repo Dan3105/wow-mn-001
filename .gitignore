@@ -1,8 +1,0 @@
-venv/
-*.pyc
-.env
-.vscode/
-deployment/volumes/*
-secrete/
-/store/
-backend/store/
