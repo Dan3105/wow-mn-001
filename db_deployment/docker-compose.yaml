@@ -1,0 +1,28 @@
+services:
+  chroma_db:
+    image: chromadb/chroma
+    container_name: chromadb
+    restart: always
+    volumes:
+      - ./volumes/chroma:/chroma/chroma
+    ports:
+      - "8001:8000"
+    
+  # postgres:
+  #   image: postgres:16
+  #   container_name: postgres
+  #   restart: always
+  #   environment:
+  #     POSTGRES_USER: user
+  #     POSTGRES_PASSWORD: password
+  #     POSTGRES_DB: wowmn
+  #   volumes:
+  #     - ./volumes/postgres:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+
+  redis:
+    image: redis:latest
+    restart: on-failure
+    ports:
+      - "6379:6379"

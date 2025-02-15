@@ -1,0 +1,7 @@
+from app.web import create_app
+
+flask_app = create_app()
+celery_app = flask_app.extensions["celery"]
+
+def get_flask_app():
+    return flask_app
